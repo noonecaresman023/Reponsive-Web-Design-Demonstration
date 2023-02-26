@@ -20,6 +20,7 @@ html, body{
     font-family: 'Shantell Sans', cursive;
     animation: transitionIn .5s;
     background-color: rgb(252, 244, 229);
+
 }
 
 /* NAVIGATION BAR STYLES */
@@ -168,8 +169,8 @@ h1{
 /*Style for the menu container*/
 #menu{
     display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: auto 1fr 1fr; 
+    grid-template-columns: auto; 
+    grid-template-rows: auto; 
     gap: 1em;
     grid-template-areas: 
       "section-title section-title section-title"
@@ -209,11 +210,11 @@ footer{
     flex-direction: column;
     justify-content: center ;
     text-align: center;
-    background-color: black;
-    position: absolute;
+    background-color: black;    
     width: 100%;
     height: 125px;
     color: gray;
+    /* bottom: 0; */
 }
 
 footer a{
@@ -252,6 +253,84 @@ footer a{
     }
     to{
         opacity: 1;
+    }
+
+}
+
+
+/* Responsive Styling (breakpoints) */
+
+/* Ipads and Tablets styling */
+/*collapsible navbar*/
+@media only screen and (min-width: 601px) and (max-width:861px) {
+    #menu{
+        grid-template-columns: 1fr 1fr; 
+        grid-template-areas: 
+          "section-title section-title"
+          "item-1 item-2"
+          "item-3 item-4"
+          "item-5 item-6";
+    }
+    .menu-item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-img{
+        height: 200px;
+    }
+
+    .menu-item p{
+        line-height: 1.2;
+        letter-spacing: 1.2px;
+        font-size: .8rem;
+        /* height: 200px; */
+    }
+
+    footer{
+        font-size: 0.8rem;
+        padding: 2em;
+    }
+
+    
+}
+
+/* Mobile devices */
+/*collapsible navbar*/
+@media only screen and (min-width: 320px) and (max-width:600px){
+    #menu{
+        grid-template-areas: 
+          "section-title"
+          "item-1"
+          "item-2"
+          "item-3"
+          "item-4"  
+          "item-5"
+          "item-6";
+    }
+
+    .menu-item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-img{
+        height: 150px;
+    }
+
+    .menu-item p{
+        line-height: 1.2;
+        letter-spacing: 1.2px;
+        font-size: .8rem;
+    }
+
+    footer{
+        font-size: 0.8rem;
+        padding: 2em;
     }
 
 }
