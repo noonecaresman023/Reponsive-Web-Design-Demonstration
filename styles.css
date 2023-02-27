@@ -16,11 +16,16 @@ font-family: 'Tilt Neon', cursive;
 
 /*General styles*/
 html, body{
+    scroll-behavior: smooth !important;  /*Smooth scrolling when pressing view our menu*/
     height: 100%;
     font-family: 'Shantell Sans', cursive;
     animation: transitionIn .5s;
     background-color: rgb(252, 244, 229);
 
+}
+
+header{
+    overflow: hidden !important; /* The whole purpose of this is to remove horizontal scrolling on smaller viewports*/
 }
 
 /* NAVIGATION BAR STYLES */
@@ -98,7 +103,57 @@ html, body{
     color: rgb(177, 0, 0);
 }
 
-/* Hero image and hero text styling section*/
+/** HAMBURGER BUTTON FOR COLLAPSIBLE NAVBAR **/
+label{
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    opacity: 0; /*So that it doesn't show on larger viewports*/
+}
+
+/* STYLING THE LINES */
+label span{
+    background: white;
+    border-radius: 10px;
+    height: 8px;
+    margin: 5px 0;
+    transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    width: 80%;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+/*Turns the hamburger into an x when pressed*/
+/*FIRST LINE OF THE BURGER BUTTON */
+input[type="checkbox"]:checked ~ span:nth-of-type(1){
+    transform-origin: bottom;
+    transform: rotatez(45deg) translateX(5px)translateY(5px);
+}
+
+/*SECOND LINE OF THE BURGER BUTTON */
+input[type="checkbox"]:checked ~ span:nth-of-type(2){
+    opacity: 0;
+}
+
+/*THIRD LINE OF THE BURGER BUTTON */
+input[type="checkbox"]:checked ~ span:nth-of-type(3){
+    transform-origin: bottom;
+    transform: rotatez(-45deg) translateX(15px)translateY(-12px);
+}
+
+/* Contains the actual hamburger button*/
+.hamburger-btn{
+    position: absolute;
+    right: 2rem;
+}
+
+/** END OF NAVIGATION STYLE**/
+
+/** BEGINNING OF Hero image and hero text styling section **/
 
 .hero-image{
     background-image: linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1576817228310-3bfdf2689f58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80);
@@ -127,7 +182,7 @@ h1{
     transform: translate(-50%, -50%);
 }
 
-/* Applie to every h1-h6 */
+/* Applied to every h1-h6 */
 .special-h-style{
     color: red;
 }
@@ -151,7 +206,9 @@ h1{
     font-size: 1rem;
 }
 
-/* MonMon's Homemade styling section of the document */
+/** END OF HERO IMAGE OF THE SITE STYLE **/
+
+/** BEGINNING OF MonMon's Homemade styling section of the document **/
 .info-section{
     text-align: center;
     padding: 1.5em;
@@ -166,6 +223,8 @@ h1{
     line-height: 2;
 }
 
+/** END OF MonMon's Homemade styling section of the document **/
+
 /*Style for the menu container*/
 #menu{
     display: grid; 
@@ -178,7 +237,6 @@ h1{
       "item-4 item-5 item-6"; 
     padding: 3em;
     margin-bottom: 8em;
-    position: relative;
 }
 
 #menu h2{
@@ -189,6 +247,10 @@ h1{
 
 /*Styles for the individual menu items*/
 .menu-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 1em;
 }
 
@@ -197,7 +259,7 @@ h1{
     height: 300px;
 }
 
-.menu-item h3, .menu-item p{
+.menu-item h3{
     text-align: center;
     line-height: 1.5;
     letter-spacing: 1.5px;
@@ -209,6 +271,7 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: center ;
+    align-items: center;
     text-align: center;
     background-color: black;    
     width: 100%;
@@ -262,6 +325,17 @@ footer a{
 
 /* Ipads and Tablets styling */
 /*collapsible navbar*/
+@media only screen and (min-width: 320px) and (max-width: 861px){
+    #main-nav ul li a{
+        opacity: 0;
+    }
+
+    label{
+        opacity: 1; /* Makes the hamburger button appear and disappear beyond 861px*/
+    }
+
+}
+
 @media only screen and (min-width: 601px) and (max-width:861px) {
     #menu{
         grid-template-columns: 1fr 1fr; 
@@ -286,7 +360,6 @@ footer a{
         line-height: 1.2;
         letter-spacing: 1.2px;
         font-size: .8rem;
-        /* height: 200px; */
     }
 
     footer{
